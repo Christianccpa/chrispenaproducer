@@ -1,0 +1,45 @@
+@use 'vars' as v;
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: v.$primarioClaro;
+    font-size: 16px;
+    line-height: 1.5;
+    position: relative;
+    padding-bottom: 6rem;
+    min-height: 100vh;
+}
+
+p {
+    font-size: 1.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: v.$blanco;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: v.$secundario;
+    font-family: v.$fuentePrincipal;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3.2rem;
+}
+
+h3 {
+    font-size: 2.2rem;
+}

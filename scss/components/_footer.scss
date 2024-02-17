@@ -1,0 +1,17 @@
+/** footer **/
+.footer {
+    background-color: $primario;
+    padding: 1rem 1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+.footer__texto {
+    font-family: $fuentePrincipal;
+    font-size: 2rem;
+    text-align: center;
+    margin: auto;
+
+}

@@ -1,0 +1,30 @@
+a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.navbar {
+    width: 100%;
+}
+
+.navbar-toggler {
+    margin-top: 1rem;
+}
+
+.nav-item {
+    font-family: $fuentePrincipal;
+    color: var $blanco;
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.navbar-nav {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-nav .nav-item {
+    margin: 0 1rem;
+}

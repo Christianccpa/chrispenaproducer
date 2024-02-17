@@ -1,0 +1,56 @@
+/** Clients **/
+.artistas {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    row-gap: 2rem;
+    flex-wrap: wrap;
+
+    .artistas__imagen {
+        transition: transform .2s;
+        width: 100%;
+
+        &:hover {
+            transform: scale(1.1);
+
+        }
+    }
+
+    .descripcion {
+        display: none;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.651);
+        color: white;
+        padding: 10px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transition: opacity 0.3s ease;
+    }
+
+}
+
+.austins-phobias,
+.ocaso,
+.vascoo,
+.living-the-panic,
+.fenix-requiem,
+.sag {
+    position: relative;
+    overflow: hidden;
+}
+
+.austins-phobias:hover .descripcion,
+.ocaso:hover .descripcion,
+.vascoo:hover .descripcion,
+.living-the-panic:hover .descripcion,
+.fenix-requiem:hover .descripcion,
+.sag:hover .descripcion {
+    display: block;
+}

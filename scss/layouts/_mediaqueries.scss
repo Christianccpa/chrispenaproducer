@@ -1,0 +1,48 @@
+/* Media queris */
+@media (max-width: 430px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .box {
+        flex-direction: column-reverse;
+    }
+
+    .box-img {
+        order: 2;
+    }
+
+    .box-content {
+        order: 1;
+    }
+
+    .navbar-toggler {
+        margin-top: 0;
+        margin-bottom: 0rem;
+    }
+
+    .services:nth-child(2n) {
+        flex-direction: column-reverse;
+    }
+
+    .services {
+        flex-direction: column-reverse;
+    }
+
+    .services-img {
+        order: 2;
+    }
+
+    .services__content {
+        order: 1;
+    }
+
+}

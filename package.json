@@ -1,0 +1,25 @@
+{
+  "name": "chrispenaproducer",
+  "version": "1.0.0",
+  "description": "Proyecto Chris Pena",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Christianccpa/Chris-pena.git"
+  },
+  "keywords": [
+    "SASS"
+  ],
+  "author": "Christian Peña",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Christianccpa/Chris-pena/issues"
+  },
+  "homepage": "https://github.com/Christianccpa/Chris-pena#readme",
+  "dependencies": {
+    "sass": "^1.70.0"
+  }
+}

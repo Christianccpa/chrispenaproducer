@@ -1,0 +1,27 @@
+/* Contact */
+.container {
+    font-family: $fuentePrincipal;
+    font-size: 2rem;
+
+    input,
+    textarea {
+        font-size: 1.5rem;
+        background-color: $secundario;
+    }
+
+    .description_required {
+        font-style: italic;
+        color: $secundarioOscuro;
+        font-size: 1.5rem;
+    }
+
+    .form-label {
+        color: $secundario;
+    }
+
+    #submit {
+        font-size: 1.5rem;
+        background-color: $primarioClaro;
+        border: 1px solid $primario;
+    }
+}

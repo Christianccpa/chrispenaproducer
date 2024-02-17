@@ -1,0 +1,19 @@
+//import variables
+@import 'base/globales';
+@import 'base/vars';
+@import 'base/reset';
+@import 'base/normalize';
+
+//import components
+@import 'components/navbar';
+@import 'components/footer';
+@import 'components/header';
+
+//import layouts
+@import 'layouts/index';
+@import 'layouts/clients';
+@import 'layouts/contact';
+@import 'layouts/listen';
+@import 'layouts/services';
+@import 'layouts/mediaqueries';
+
