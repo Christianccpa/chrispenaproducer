@@ -35,16 +35,19 @@
 
     .services {
         flex-direction: column-reverse;
+        
     }
 
     .services-img {
         width: 100%;
+        padding: 10px;
         order: 2;
     }
 
     .services__content {
         order: 1;
+       
     }
-
-
+    
 }
+

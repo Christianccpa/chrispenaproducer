@@ -18,10 +18,16 @@
     .form-label {
         color: $secundario;
     }
-
+    
     #submit {     
-        font-size: 1.5rem;
+        width: 200px;
+        font-size: 2rem;
         background-color: $primarioClaro;
         border: 1px solid $primario;    
+    }
+
+    .btn-primary:hover {
+        background-color: $primario;
+        color: $secundario;
     }
 }

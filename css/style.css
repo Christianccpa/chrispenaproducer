@@ -414,7 +414,7 @@ a {
 .header__logo {
   margin: 2rem 0;
   margin-top: 1rem;
-  width: 30rem;
+  width: 20%;
 }
 
 .contenedor {
@@ -566,9 +566,14 @@ a {
   color: #DCD7C9;
 }
 .container #submit {
-  font-size: 1.5rem;
+  width: 200px;
+  font-size: 2rem;
   background-color: #3F4E4F;
   border: 1px solid #2C3639;
+}
+.container .btn-primary:hover {
+  background-color: #2C3639;
+  color: #DCD7C9;
 }
 
 /** listen-videos **/
@@ -596,8 +601,8 @@ a {
   border-radius: 8px;
 }
 .pseudoServices .services__content {
-  width: 50%;
-  max-width: 50%;
+  width: 100%;
+  max-width: 100%;
   font-size: 1.5vw;
 }
 
@@ -663,6 +668,8 @@ a {
     flex-direction: column-reverse;
   }
   .services-img {
+    width: 100%;
+    padding: 10px;
     order: 2;
   }
   .services__content {
