@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Variables de JavaScript necesarias
+    // Variables 
     let cart = []; // Array para almacenar los elementos del carrito
     const discountsThreshold = 2; // Umbral para aplicar descuento del 10%
 
