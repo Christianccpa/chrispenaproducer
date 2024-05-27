@@ -1,36 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Array para almacenar los elementos del carrito
+    console.log("DOM completamente cargado y analizado");
+
+    // Array para almacenar los servicios agregados al carrito
     let cart = [];
-    // Umbral para aplicar descuento del 10%
+    // Umbral de descuento
     const discountsThreshold = 2;
 
-    // Objetos de servicios con nombre y precio
-    const services = [
-        { name: "Music production", price: 200 },
-        { name: "Audio Editing", price: 50 },
-        { name: "Audio Mixing", price: 100 },
-        { name: "Mastering", price: 30 },
-        { name: "Reamping", price: 20 }
-    ];
+    // Elementos del DOM para el carrito
+    const cartItemsList = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
 
-    // Función para cargar el carrito desde el localStorage al cargar la página
-    function loadCartFromStorage() {
-        const storedCart = localStorage.getItem('cart');
-        if (storedCart) {
-            cart = JSON.parse(storedCart);
-            updateCart();
-        }
-    }
+    let servicesData; // Variable para almacenar los datos de los servicios
 
     // Función para agregar un servicio al carrito
-    function addToCart(serviceName) {
-        const service = services.find(s => s.name === serviceName);
-        if (service) {
-            cart.push(service);
-            updateCart();
-        } else {
-            console.log("Servicio no encontrado");
-        }
+    function addToCart(serviceName, servicePrice) {
+        const service = { name: serviceName, price: servicePrice };
+        cart.push(service);
+        updateCart();
     }
 
     // Función para eliminar un servicio del carrito
@@ -39,51 +25,87 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCart();
     }
 
-    // Función para actualizar el carrito y el total
-    function updateCart() {
-        let total = 0;
-        const cartItemsList = document.getElementById('cart-items');
-        cartItemsList.innerHTML = '';
+// Función para actualizar el contenido del carrito en el DOM
+function updateCart() {
+    let total = 0;
+    cartItemsList.innerHTML = '';
 
-        cart.forEach((item, index) => {
-            total += item.price;
+    // Objeto para almacenar servicios agrupados por nombre
+    const groupedCart = {};
 
-            // Crear elemento de lista para cada servicio en el carrito
-            const listItem = document.createElement('li');
-            listItem.textContent = `${item.name}: $${item.price}`;
-
-            // Botón para eliminar el elemento del carrito
-            const removeButton = document.createElement('button');
-            removeButton.textContent = 'Eliminar';
-            removeButton.addEventListener('click', () => removeItemFromCart(index));
-            listItem.appendChild(removeButton);
-
-            cartItemsList.appendChild(listItem);
-        });
-
-        // Aplicar descuento del 10% si hay más de 2 elementos en el carrito
-        if (cart.length > discountsThreshold) {
-            total *= 0.9;
+    // Agrupar servicios por nombre y calcular total
+    cart.forEach(item => {
+        if (groupedCart[item.name]) {
+            groupedCart[item.name].quantity++;
+            groupedCart[item.name].totalPrice += item.price;
+        } else {
+            groupedCart[item.name] = {
+                quantity: 1,
+                totalPrice: item.price
+            };
         }
+        total += item.price;
+    });
 
-        // Actualizar el total en el DOM
-        const cartTotal = document.getElementById('cart-total');
-        cartTotal.textContent = `$${total.toFixed(2)}`;
+    // Mostrar servicios agrupados en el carrito
+    for (const serviceName in groupedCart) {
+        const item = groupedCart[serviceName];
+        const listItem = document.createElement('li');
+        listItem.textContent = `${serviceName} x${item.quantity}: $${item.totalPrice}`;
 
-        // Guardar el carrito en el localStorage
-        localStorage.setItem('cart', JSON.stringify(cart));
+        // Botón para eliminar el servicio del carrito
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Eliminar';
+        removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
+        removeButton.addEventListener('click', () => removeItemFromCart(serviceName));
+        listItem.appendChild(removeButton);
+
+        cartItemsList.appendChild(listItem);
     }
 
-    // Obtener todos los botones "Agregar al carrito"
+    // Aplicar descuento si se supera el umbral de descuento
+    if (cart.length > discountsThreshold) {
+        total *= 0.9;
+    }
+
+    // Actualizar el total en el DOM
+    cartTotal.textContent = `$${total.toFixed(2)}`;
+
+    // Almacenar el carrito en el almacenamiento local
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Función para cargar los datos de los servicios desde el archivo JSON
+function loadServices() {
+    fetch('data/services.json') // Ruta ajustada
+        .then(response => response.json()) // Convertir la respuesta a JSON
+        .then(data => {
+            servicesData = data; // Almacenar los datos en la variable servicesData
+        })
+        .catch(error => {
+            // Manejar errores
+            console.error('Se produjo un error al cargar los servicios:', error);
+        });
+}
+
+
+    // Llamar a la función para cargar los servicios cuando se cargue la página
+    loadServices();
+
+    // Obtener todos los botones "Add to Cart" y agregarles un event listener
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    // Agregar manejadores de eventos a los botones "Agregar al carrito"
     addToCartButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const serviceName = button.dataset.service;
-            addToCart(serviceName);
+        button.addEventListener('click', () => {
+            const serviceName = button.parentElement.querySelector('.services__content-tittle').textContent;
+            const servicePrice = parseFloat(button.getAttribute('data-price'));
+            addToCart(serviceName, servicePrice);
         });
     });
 
-    // Cargar el carrito desde el localStorage al cargar la página
-    loadCartFromStorage();
+    // Cargar el carrito desde el almacenamiento local al cargar la página
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+        cart = JSON.parse(storedCart);
+        updateCart();
+    }
 });

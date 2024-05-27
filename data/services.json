@@ -1,0 +1,7 @@
+[
+    { "name": "Music production", "price": 200 },
+    { "name": "Audio Editing", "price": 50 },
+    { "name": "Audio Mixing", "price": 100 },
+    { "name": "Mastering", "price": 30 },
+    { "name": "Reamping", "price": 20 }
+]
